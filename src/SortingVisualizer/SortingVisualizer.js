@@ -1,51 +1,48 @@
 import React from 'react'
+import { useState } from "react"
 import Slider from './components/Slider';
 
-export default class SortingVisualizer extends React.Component {
-    constructor(props){
-        super(props);
+const SortingVisualizer=() =>{
 
-        this.state = {
-            array: [],
-        };
-    }
-    componentDidMount(){
-        this.createArray();
-    }
+    const [array, setArray] = useState([])
+    const [numOfItems,setNumOfItems] = useState(100)
+    
 
-    createArray(){
-        const array=[];
-        for(let i =0; i< 200; i++){
-            array.push(this.getRandomInt(10,700));
+    const createArray = (number) =>{
+        let array =[]
+        for(let i =0; i< number; i++){
+            array.push(getRandomInt(10,700));
         }
-        this.setState({array});
+        setArray(array)
+
     }
 
-    getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min) + min); 
+    const getRandomInt = (min, max) =>{
+        return Math.floor(Math.random() * (max - min) + min) 
     }
 
+    const changeNumOfItems =(num)=>{
+        setNumOfItems(num)
+        createArray(numOfItems)
+    }
 
-     render(){
+    if (array.length===0) {createArray(100)}
 
-        const {array} = this.state;
-
-         return(
-             <>
-             <button className="button" onClick={()=>this.createArray()}>Create New Array</button>
-             <Slider text={'Array Size: '}/>
-             
-             <div className="array-container">
-             {array.map((value,idx) =>(
-                <div 
-                className="array-item" 
-                key={idx}
-                style ={{height: `${value}px`}}
-                >
-                </div>
-             ))}
-             </div>
-             </>
-         );
-     }
-}
+     return(
+         <>
+         <button className="button" onClick={()=>createArray(numOfItems)}>Create New Array</button>
+         <Slider text={'Array Size: '} min={10} max={300} onResize={changeNumOfItems}/>
+         <div className="array-container">
+         {array.map((value,idx) =>(
+            <div 
+            className="array-item" 
+            key={idx}
+            style ={{height: `${value}px`}}
+            >
+            </div>
+         ))}
+         </div>
+         </>
+     );
+ }
+export default SortingVisualizer

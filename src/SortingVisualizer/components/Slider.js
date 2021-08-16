@@ -1,18 +1,35 @@
 import React from 'react'
 import { useState } from "react"
-const Slider = ({text}) => {
+import PropTypes from 'prop-types'
 
-    const [value, setValue] = useState(50)
+const Slider = ({text,min,max,onResize}) => {
+
+    const [value, setValue] = useState((min+max)/2)
     
-    let onChange =(e) => setValue(e.target.value)
+    const onChange =(e) => {
+        setValue(e.target.value)
+        onResize(Number.parseInt(e.target.value))
+    }
 
     return (
     <div className="slidecontainer">
         <div className="slide-value">{text}{value}</div>
-        <input type="range" min="1" max="100" value={value} class="slider" onChange={onChange}/>
+        <input type="range" min={min} max={max} value={value} class="slider" onChange={onChange}/>
         
      </div>
     )
 }
+
+Slider.defaultProps ={
+    min: 10,
+    max: 100
+}
+
+Slider.propTypes={
+    text: PropTypes.string,
+    min: PropTypes.number,
+    max: PropTypes.number
+}
+
 
 export default Slider
