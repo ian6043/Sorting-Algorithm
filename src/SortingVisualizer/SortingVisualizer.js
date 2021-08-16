@@ -33,7 +33,8 @@ export default class SortingVisualizer extends React.Component {
          return(
              <>
              <button className="button" onClick={()=>this.createArray()}>Create New Array</button>
-             <Slider/>
+             <Slider text={'Array Size: '}/>
+             
              <div className="array-container">
              {array.map((value,idx) =>(
                 <div 
