@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from "react"
 import Slider from './components/Slider';
+import Button from './components/Button';
 
 const SortingVisualizer=() =>{
 
@@ -14,6 +15,7 @@ const SortingVisualizer=() =>{
             array.push(getRandomInt(10,700));
         }
         setArray(array)
+        
 
     }
 
@@ -24,24 +26,36 @@ const SortingVisualizer=() =>{
     const changeNumOfItems =(num)=>{
         setNumOfItems(num)
         createArray(numOfItems)
+        console.log(numOfItems)
+
     }
 
     if (array.length===0) {createArray(100)}
 
      return(
          <>
-         <button className="button" onClick={()=>createArray(numOfItems)}>Create New Array</button>
-         <Slider text={'Array Size: '} min={10} max={300} onResize={changeNumOfItems}/>
-         <div className="array-container">
+         <div className="array-buttons">
+            <button className="button" onClick={()=>createArray(numOfItems)}>Create New Array</button>
+            <Slider text={'Array Size: '} min={10} max={200} onResize={changeNumOfItems}/>
+         </div>
+         <div className="array-container" >
          {array.map((value,idx) =>(
             <div 
             className="array-item" 
             key={idx}
-            style ={{height: `${value}px`}}
+            style ={{height: `${value}px`,width:`${80/numOfItems}%`,margin:`0 ${10/numOfItems}%`}}
             >
             </div>
          ))}
          </div>
+         <div className="sort-buttons">
+            <Button text={'Merge Sort'} className="sort-button"/>
+            <Button text={'Bubble Sort'} className="sort-button"/>
+            <Button text={'Insertion Sort'} className="sort-button"/>
+            <Button text={'Quick Sort'} className="sort-button"/>
+         </div>
+
+
          </>
      );
  }

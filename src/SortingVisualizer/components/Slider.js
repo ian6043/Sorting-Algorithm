@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const Slider = ({text,min,max,onResize}) => {
 
-    const [value, setValue] = useState((min+max)/2)
+    const [value, setValue] = useState(100)
     
     const onChange =(e) => {
         setValue(e.target.value)
@@ -14,7 +14,7 @@ const Slider = ({text,min,max,onResize}) => {
     return (
     <div className="slidecontainer">
         <div className="slide-value">{text}{value}</div>
-        <input type="range" min={min} max={max} value={value} class="slider" onChange={onChange}/>
+        <input type="range" min={min} max={max} value={value} step="5" class="slider" onChange={onChange}/>
         
      </div>
     )
