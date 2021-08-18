@@ -32,6 +32,38 @@ const SortingVisualizer=() =>{
 
     }
     
+    const mergeSort =()=> {
+
+    }
+
+    const bubbleSort =()=> {
+
+    }
+
+    const insertionSort =()=> {
+
+    }
+
+    const quickSort =()=> {
+
+    }
+
+    const heapSort =()=> {
+
+    }
+
+    const testAlgorithms =()=>{
+        for(let i=0; i<100; i++){
+            const testArray =[];
+            for(let j=0; j< getRandomInt(10,1000);j++){
+                testArray.push(getRandomInt(0,1000));
+            }
+            const sortedArray= array.sort((a,b)=>a - b);
+            //call sorting function
+            //console log the comparison
+        }
+
+    }
 
     if (array.length===0) {createArray()}
 
@@ -52,10 +84,11 @@ const SortingVisualizer=() =>{
          ))}
          </div>
          <div className="sort-buttons">
-            <Button text={'Merge Sort'} />
-            <Button text={'Bubble Sort'} />
-            <Button text={'Insertion Sort'} />
-            <Button text={'Quick Sort'} />
+            <Button text={'Merge Sort'} onClick={mergeSort}/>
+            <Button text={'Bubble Sort'} onClick={bubbleSort}/>
+            <Button text={'Insertion Sort'} onClick={insertionSort}/>
+            <Button text={'Quick Sort'} onClick={quickSort}/>
+            <Button text={'Heap Sort'} onClick={heapSort}/>
          </div>
 
 
