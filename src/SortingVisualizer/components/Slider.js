@@ -8,13 +8,13 @@ const Slider = ({text,min,max,onResize}) => {
     
     const onChange =(e) => {
         setValue(e.target.value)
-        onResize(Number.parseInt(e.target.value))
+        onResize(e)
     }
 
     return (
     <div className="slidecontainer">
         <div className="slide-value">{text}{value}</div>
-        <input type="range" min={min} max={max} value={value} step="5" class="slider" onChange={onChange}/>
+        <input type="range" min={min} max={max} value={value} step="5" class="slider" onChange={onChange} onMouseUp={onChange}/>
         
      </div>
     )
