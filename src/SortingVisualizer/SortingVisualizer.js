@@ -52,10 +52,10 @@ const SortingVisualizer=() =>{
          ))}
          </div>
          <div className="sort-buttons">
-            <Button text={'Merge Sort'} className="sort-button"/>
-            <Button text={'Bubble Sort'} className="sort-button"/>
-            <Button text={'Insertion Sort'} className="sort-button"/>
-            <Button text={'Quick Sort'} className="sort-button"/>
+            <Button text={'Merge Sort'} />
+            <Button text={'Bubble Sort'} />
+            <Button text={'Insertion Sort'} />
+            <Button text={'Quick Sort'} />
          </div>
 
 
