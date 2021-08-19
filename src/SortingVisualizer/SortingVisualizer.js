@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from "react"
 import Slider from './components/Slider';
 import Button from './components/Button';
-import { wait } from '@testing-library/react';
+import * as algorithms from './algorithms';
 
 const SortingVisualizer=() =>{
 
@@ -32,8 +32,28 @@ const SortingVisualizer=() =>{
 
     }
     
-    const mergeSort =()=> {
-
+    function mergeSort(){
+        const animations = algorithms.mergeSort(array);
+        for(let i= 0;i< animations.length;i++){
+            const arrayItems =document.getElementsByClassName("array-item");
+            const isColorChange = i % 3 !==2;
+            if(isColorChange){
+                const [itemOneIdx, itemTwoIdx] = animations[i];
+                const itemOneStyle = arrayItems[itemOneIdx].style;
+                const itemTwoStyle = arrayItems[itemTwoIdx].style;
+                const color = i % 3 === 0 ? 'red' : 'steelblue';
+                setTimeout(()=>{
+                    itemOneStyle.backgroundColor = color ;
+                    itemTwoStyle.backgroundColor = color ;
+                }, i *10);
+            } else {
+                setTimeout(()=>{
+                    const [itemOneIdx, newHeight] = animations[i];
+                    const itemOneStyle = arrayItems[itemOneIdx].style;
+                    itemOneStyle.height= `${newHeight}px`;
+                }, i *10);
+            }
+        }
     }
 
     const bubbleSort =()=> {
@@ -41,7 +61,33 @@ const SortingVisualizer=() =>{
     }
 
     const insertionSort =()=> {
-
+        const animations = algorithms.insertionSort(array);
+        const newAnimations =[];
+        for(const animation of animations){
+            newAnimations.push(animation.comparison);
+            newAnimations.push(animation.comparison);
+            newAnimations.push(animation.swap);
+        }
+        for(let i= 0;i< newAnimations.length;i++){
+            const arrayItems =document.getElementsByClassName("array-item");
+            const isColorChange = i %3 !==2;
+            if(isColorChange){
+                const [itemOneIdx, itemTwoIdx] = newAnimations[i];
+                const itemOneStyle = arrayItems[itemOneIdx].style;
+                const itemTwoStyle = arrayItems[itemTwoIdx].style;
+                const color = i % 3 ===0 ? 'red' : 'steelblue';
+                setTimeout(()=>{
+                    itemOneStyle.backgroundColor = color ;
+                    itemTwoStyle.backgroundColor = color ;
+                }, i *10);
+            } else {
+                setTimeout(()=>{
+                    const [itemOneIdx, newHeight] = newAnimations[i];
+                    const itemOneStyle = arrayItems[itemOneIdx].stlye;
+                    itemOneStyle.height= `${newHeight}px`;
+                }, i *10);
+            }
+        }
     }
 
     const quickSort =()=> {
@@ -58,11 +104,18 @@ const SortingVisualizer=() =>{
             for(let j=0; j< getRandomInt(10,1000);j++){
                 testArray.push(getRandomInt(0,1000));
             }
-            const sortedArray= array.sort((a,b)=>a - b);
-            //call sorting function
-            //console log the comparison
+            const sortedArray= testArray.sort((a,b)=>a - b);
+            const insertionArray = algorithms.insertionSort(testArray);
+            //<Button text={'Test Button'} onClick={testAlgorithms}/>
+            console.log(algorithms.areArraysEqual(sortedArray,insertionArray))
         }
 
+    }
+    const printArray =()=>{
+        for(let i =0; i<array.length;i++){
+            console.log(array[i]);
+        }
+        console.log('---------------------');
     }
 
     if (array.length===0) {createArray()}
@@ -74,14 +127,16 @@ const SortingVisualizer=() =>{
             <Slider text={'Array Size: '} min={10} max={200} onResize={changeNumOfItems}/>
          </div>
          <div className="array-container" >
-         {array.map((value,idx) =>(
-            <div 
-            className="array-item" 
-            key={idx}
-            style ={{height: `${value}px`,width:`${80/numOfItems}%`,margin:`0 ${10/numOfItems}%`}}
-            >
+            <div className="array-items">
+            {array.map((value,idx) =>(
+                <div 
+                className="array-item" 
+                key={idx}
+                style ={{height: `${value}px`,width:`${80/numOfItems}%`,margin:`1px ${10/numOfItems}% 0 ${10/numOfItems}%`}}
+                >
+                </div>
+            ))}
             </div>
-         ))}
          </div>
          <div className="sort-buttons">
             <Button text={'Merge Sort'} onClick={mergeSort}/>
@@ -89,6 +144,7 @@ const SortingVisualizer=() =>{
             <Button text={'Insertion Sort'} onClick={insertionSort}/>
             <Button text={'Quick Sort'} onClick={quickSort}/>
             <Button text={'Heap Sort'} onClick={heapSort}/>
+            <Button text={'Print'} onClick={printArray}/>
          </div>
 
 

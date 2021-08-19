@@ -11,12 +11,11 @@
 
 .array-container {
   margin: auto;
-  justify-self: center;
-  align-self: center;
   width: 90%;
   height: 73%;
   overflow: hidden;
-  background-color: rgb(218, 0, 0);
+  background-color: rgb(180, 143, 143);
+  align-items: baseline;
   
 }
 
