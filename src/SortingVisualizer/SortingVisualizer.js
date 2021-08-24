@@ -62,30 +62,24 @@ const SortingVisualizer=() =>{
 
     const insertionSort =()=> {
         const animations = algorithms.insertionSort(array);
-        const newAnimations =[];
-        for(const animation of animations){
-            newAnimations.push(animation.comparison);
-            newAnimations.push(animation.comparison);
-            newAnimations.push(animation.swap);
-        }
-        for(let i= 0;i< newAnimations.length;i++){
+        for(let i= 0;i< animations.length;i++){
             const arrayItems =document.getElementsByClassName("array-item");
-            const isColorChange = i %3 !==2;
+            const isColorChange = i % 3 !==2;
             if(isColorChange){
-                const [itemOneIdx, itemTwoIdx] = newAnimations[i];
+                const [itemOneIdx, itemTwoIdx] = animations[i];
                 const itemOneStyle = arrayItems[itemOneIdx].style;
                 const itemTwoStyle = arrayItems[itemTwoIdx].style;
                 const color = i % 3 ===0 ? 'red' : 'steelblue';
                 setTimeout(()=>{
                     itemOneStyle.backgroundColor = color ;
                     itemTwoStyle.backgroundColor = color ;
-                }, i *10);
+                }, i *5);
             } else {
                 setTimeout(()=>{
-                    const [itemOneIdx, newHeight] = newAnimations[i];
-                    const itemOneStyle = arrayItems[itemOneIdx].stlye;
+                    const [itemOneIdx, newHeight] = animations[i];
+                    const itemOneStyle = arrayItems[itemOneIdx].style;
                     itemOneStyle.height= `${newHeight}px`;
-                }, i *10);
+                }, i *5);
             }
         }
     }

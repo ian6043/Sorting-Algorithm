@@ -47,17 +47,25 @@ function Merge(array,first,middle,last,tempArray,animations){
 
 export const insertionSort = (array)=>{
     const animations = [];
+    const tempArray = array.slice();
     let length = array.length;
     for(let i = 1; i<length;i++){
-        let current = array[i];
+        let current = tempArray[i];
+        
         let j = i-1;
-        while(j >= 0 && array[j]>current){
-            array[j+1]= array[j];
+        while(j >= 0 && tempArray[j]>current){
+            animations.push([i,i]);
+            tempArray[j+1]= tempArray[j];
+            animations.push([j,j]);
+            animations.push([j,tempArray[j]]);
             j--;
         }
-        array[j+1]=current;
+        tempArray[j+1]=current;
     }
-    return array;
+    //animations.push(length-2,length-2);
+    //animations.push(length-1,length-1);
+    //animations.push([length-2,tempArray[length-2]]);
+    return animations;
 }
 
 
