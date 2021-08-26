@@ -21,26 +21,30 @@ function Merge(array,first,middle,last,tempArray,animations){
     let j = middle+1;
     while (i<=middle && j<=last){
         
-        animations.push([i,j]);
-        animations.push([i,j]);
+        animations.push(['current',i,j,0,0,'red']);
+
         if(tempArray[i]<=tempArray[j]){
-            animations.push([k,tempArray[i]]);
+            animations.push(['changeOne',k,i,tempArray[i],0,'red']);
+            animations.push(['current',i,j,0,0,'steelblue']);
             array[k++]=tempArray[i++];
         } else{
-            animations.push([k,tempArray[j]]);
+            animations.push(['changeOne',k,j,tempArray[j],0,'red']);
+            animations.push(['current',i,j,0,0,'steelblue']);
             array[k++]=tempArray[j++]
         }
+
     } 
     while(i<=middle){
-        animations.push([i,i]);
-        animations.push([i,i]);
-        animations.push([k,tempArray[i]]);
+        animations.push(['current',i,i,0,0,'red']);
+        animations.push(['changeOne',k,i,tempArray[i],0,'red']);
+        animations.push(['current',i,i,0,0,'steelblue']);
         array[k++]=tempArray[i++];
+
     }
     while(j<=last){
-        animations.push([j,j]);
-        animations.push([j,j]);
-        animations.push([k,tempArray[j]]);
+        animations.push(['current',j,j,0,0,'red']);
+        animations.push(['changeOne',k,j,tempArray[j],0,'red']);
+        animations.push(['current',j,j,0,0,'steelblue']);
         array[k++]=tempArray[j++];
     }
 }
@@ -66,7 +70,8 @@ export const insertionSort = (array)=>{
         animations.push(['swap',i,j+1,current,tempArray[j+1],'red']);
         tempArray[j+1]=current;
     }
-    animations.push(['current',length-1,length-1,0,0,'steelblue'])
+    animations.push();
+    animations.push(['current',length-1,length-1,0,0,'steelblue']);
     return animations;
 }
 
@@ -79,25 +84,34 @@ export const bubbleSort = (array)=>{
         for(var j = 0; j < ( array.length - i -1 ); j++){
             animations.push(['current',j,j+1,0,0,'red']);
             if(tempArray[j] > tempArray[j+1]){
-                var temp = tempArray[j]
+                var temp = tempArray[j];
                 animations.push(['swap',j,j+1,tempArray[j],tempArray[j+1],'red']);
-                tempArray[j] = tempArray[j + 1]
-                tempArray[j+1] = temp
+                tempArray[j] = tempArray[j + 1];
+                tempArray[j+1] = temp;
           }
           animations.push(['current',j,j+1,0,0,'steelblue']);
         }
       }
-    return animations
+    return animations;
 }
 
-export const quickSort = (array, animations =[])=>{
-    
+export const quickSort = (array)=>{
+    const animations = [];
+    const tempArray = array.slice();
+
+    return animations;
 }
 
-export const heapSort = (array, animations =[])=>{
-    
+export const heapSort = (array)=>{
+    const animations = [];
+    const tempArray = array.slice();
+
+    return animations;
 }
 
+
+
+//used for testing algorithms in the beginning
 export const areArraysEqual=(a, b)=>{
     if (a === b) return true;
     if (a == null || b == null) return false;
