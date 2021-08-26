@@ -44,33 +44,50 @@ function Merge(array,first,middle,last,tempArray,animations){
         array[k++]=tempArray[j++];
     }
 }
-
+//TO DO FIX LAST ELEMENT SWITCH
 export const insertionSort = (array)=>{
     const animations = [];
     const tempArray = array.slice();
     let length = array.length;
     for(let i = 1; i<length;i++){
         let current = tempArray[i];
-        
         let j = i-1;
+        animations.push(['current',i,i,0,0,'green']);
+
         while(j >= 0 && tempArray[j]>current){
-            animations.push([i,i]);
+            animations.push(['current',j,j+1,0,0,'red']);
+            animations.push(['swap',j+1,j,tempArray[j+1],tempArray[j],'red']);
+            animations.push(['current',j,j+1,0,0,'steelblue']);
+            animations.push(['current',i,i,0,0,'green']);
             tempArray[j+1]= tempArray[j];
-            animations.push([j,j]);
-            animations.push([j,tempArray[j]]);
             j--;
         }
+        animations.push(['current',j+1,j+1,0,0,'steelblue']);
+        animations.push(['swap',i,j+1,current,tempArray[j+1],'red']);
         tempArray[j+1]=current;
     }
-    //animations.push(length-2,length-2);
-    //animations.push(length-1,length-1);
-    //animations.push([length-2,tempArray[length-2]]);
+    animations.push(['current',length-1,length-1,0,0,'steelblue'])
     return animations;
 }
 
 
-export const bubbleSort = (array, animations =[])=>{
-    
+export const bubbleSort = (array)=>{
+    const animations = [];
+    const tempArray = array.slice();
+    for(var i = 0; i < array.length; i++){
+     
+        for(var j = 0; j < ( array.length - i -1 ); j++){
+            animations.push(['current',j,j+1,0,0,'red']);
+            if(tempArray[j] > tempArray[j+1]){
+                var temp = tempArray[j]
+                animations.push(['swap',j,j+1,tempArray[j],tempArray[j+1],'red']);
+                tempArray[j] = tempArray[j + 1]
+                tempArray[j+1] = temp
+          }
+          animations.push(['current',j,j+1,0,0,'steelblue']);
+        }
+      }
+    return animations
 }
 
 export const quickSort = (array, animations =[])=>{

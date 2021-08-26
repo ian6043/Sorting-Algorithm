@@ -57,29 +57,45 @@ const SortingVisualizer=() =>{
     }
 
     const bubbleSort =()=> {
+        const animations = algorithms.bubbleSort(array);
+        for(let i= 0;i< animations.length;i++){
+            const arrayItems =document.getElementsByClassName("array-item");
+            const [detail,itemOneIdx,itemTwoIdx,heightOne,heightTwo,color] = animations[i];
+            const itemOneStyle = arrayItems[itemOneIdx].style;
+            const itemTwoStyle = arrayItems[itemTwoIdx].style;
+            if(detail ==='current'){
+                setTimeout(()=>{
+                    itemOneStyle.backgroundColor = color ;
+                    itemTwoStyle.backgroundColor = color;
+                }, i *10);
+            } else if(detail ==='swap'){
+                setTimeout(()=>{        
+                    itemOneStyle.height= `${heightTwo}px`;
+                    itemTwoStyle.height= `${heightOne}px`;
+                   }, i *10);
 
+            }
+        }
     }
 
     const insertionSort =()=> {
         const animations = algorithms.insertionSort(array);
         for(let i= 0;i< animations.length;i++){
             const arrayItems =document.getElementsByClassName("array-item");
-            const isColorChange = i % 3 !==2;
-            if(isColorChange){
-                const [itemOneIdx, itemTwoIdx] = animations[i];
-                const itemOneStyle = arrayItems[itemOneIdx].style;
-                const itemTwoStyle = arrayItems[itemTwoIdx].style;
-                const color = i % 3 ===0 ? 'red' : 'steelblue';
+            const [detail,itemOneIdx,itemTwoIdx,heightOne,heightTwo,color] = animations[i];
+            const itemOneStyle = arrayItems[itemOneIdx].style;
+            const itemTwoStyle = arrayItems[itemTwoIdx].style;
+            if(detail ==='current'){
                 setTimeout(()=>{
                     itemOneStyle.backgroundColor = color ;
-                    itemTwoStyle.backgroundColor = color ;
-                }, i *5);
-            } else {
-                setTimeout(()=>{
-                    const [itemOneIdx, newHeight] = animations[i];
-                    const itemOneStyle = arrayItems[itemOneIdx].style;
-                    itemOneStyle.height= `${newHeight}px`;
-                }, i *5);
+                    itemTwoStyle.backgroundColor = color;
+                }, i *10);
+            } else if(detail ==='swap'){
+                setTimeout(()=>{        
+                    itemOneStyle.height= `${heightTwo}px`;
+                    itemTwoStyle.height= `${heightOne}px`;
+                   }, i *10);
+
             }
         }
     }
