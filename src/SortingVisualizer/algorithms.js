@@ -1,7 +1,6 @@
-
+ //MERGESORT
 export function mergeSort(array){
     const animations= [];
-    if(array.length<=1) return array;
     const tempArray = array.slice();
     mergeSortRecursive(array,0, array.length-1,tempArray,animations);
     return animations;
@@ -48,6 +47,7 @@ function Merge(array,first,middle,last,tempArray,animations){
         array[k++]=tempArray[j++];
     }
 }
+//INSERTIONSORT
 //TO DO FIX LAST ELEMENT SWITCH
 export const insertionSort = (array)=>{
     const animations = [];
@@ -75,7 +75,7 @@ export const insertionSort = (array)=>{
     return animations;
 }
 
-
+//BUBBLESORT
 export const bubbleSort = (array)=>{
     const animations = [];
     const tempArray = array.slice();
@@ -95,13 +95,59 @@ export const bubbleSort = (array)=>{
     return animations;
 }
 
+//QUICKSORT
 export const quickSort = (array)=>{
     const animations = [];
     const tempArray = array.slice();
-
+    quickSortIterative(tempArray, animations);
     return animations;
 }
 
+function quickSortIterative(tempArray, animations){
+    let stack = [];
+    
+    stack.push(0);
+    stack.push(tempArray.length - 1);
+    
+
+    while(stack[stack.length - 1] >= 0){
+        
+    	let last = stack.pop();
+        let first = stack.pop();
+        
+        let pivotIndex = partition(tempArray, first, last);
+
+        if (pivotIndex - 1 > first){
+        	stack.push(first);
+            stack.push(pivotIndex - 1);
+		}
+
+        if (pivotIndex + 1 < last){
+        	stack.push(pivotIndex + 1);
+            stack.push(last);
+        }
+    }
+}
+
+function partition(tempArray, first, last, animations){
+    const pivot = tempArray[last];
+    let index = first;
+    for(let i = first; i<last; i++){
+        if(tempArray[i] < pivot){
+            var temp = tempArray[i];
+            tempArray[i]= tempArray[index];
+            tempArray[index]= temp;
+        }
+        index++;
+    }
+    var tempSwap = tempArray[last];
+    tempArray[last]= tempArray[index];
+    tempArray[index] = tempSwap;
+    return index;
+}
+
+
+//HEAPSORT
 export const heapSort = (array)=>{
     const animations = [];
     const tempArray = array.slice();
