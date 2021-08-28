@@ -115,7 +115,7 @@ function quickSortIterative(tempArray, animations){
     	let last = stack.pop();
         let first = stack.pop();
         
-        let pivotIndex = partition(tempArray, first, last);
+        let pivotIndex = partition(tempArray, first, last, animations);
 
         if (pivotIndex - 1 > first){
         	stack.push(first);
@@ -132,14 +132,20 @@ function quickSortIterative(tempArray, animations){
 function partition(tempArray, first, last, animations){
     const pivot = tempArray[last];
     let index = first;
+
     for(let i = first; i<last; i++){
-        if(tempArray[i] < pivot){
+        animations.push(['current',i,index,0,0,'red']);
+        if(tempArray[i] < pivot){ 
+            animations.push(['swap',i,index,tempArray[i],tempArray[index],'red']);
             var temp = tempArray[i];
             tempArray[i]= tempArray[index];
             tempArray[index]= temp;
-        }
-        index++;
+            animations.push(['current',i,index,0,0,'steelblue']);
+            index++; 
+        }  
+        animations.push(['current',i,index,0,0,'steelblue']);
     }
+    animations.push(['swap',last,index,tempArray[last],tempArray[index],'red']);
     var tempSwap = tempArray[last];
     tempArray[last]= tempArray[index];
     tempArray[index] = tempSwap;

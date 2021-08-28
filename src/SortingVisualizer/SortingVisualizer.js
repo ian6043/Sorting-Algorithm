@@ -17,7 +17,6 @@ const SortingVisualizer=() =>{
         }
         setArray(array)
         console.log("Create Array"+array.length+" "+numOfItems)
-
     }
 
     const getRandomInt = (min, max) =>{
@@ -76,23 +75,27 @@ const SortingVisualizer=() =>{
                 setTimeout(()=>{        
                     itemOneStyle.height= `${heightOne}px`;
                    }, i *10);
+            } else if(detail ==='instant'){
+                setTimeout(()=>{        
+                    itemOneStyle.backgroundColor = color ;
+                    itemTwoStyle.backgroundColor = color;
+                   },0);
             }
-           
         }
     }
-    const testAlgorithms =()=>{
-        for(let i=0; i<100; i++){
-            const testArray =[];
-            for(let j=0; j< getRandomInt(10,1000);j++){
-                testArray.push(getRandomInt(0,1000));
-            }
-            const sortedArray= testArray.sort((a,b)=>a - b);
-            const insertionArray = algorithms.insertionSort(testArray);
-            //<Button text={'Test Button'} onClick={testAlgorithms}/>
-            console.log(algorithms.areArraysEqual(sortedArray,insertionArray))
-        }
+    // const testAlgorithms =()=>{
+    //     for(let i=0; i<100; i++){
+    //         const testArray =[];
+    //         for(let j=0; j< getRandomInt(10,1000);j++){
+    //             testArray.push(getRandomInt(0,1000));
+    //         }
+    //         const sortedArray= testArray.sort((a,b)=>a - b);
+    //         const insertionArray = algorithms.insertionSort(testArray);
+    //         //<Button text={'Test Button'} onClick={testAlgorithms}/>
+    //         console.log(algorithms.areArraysEqual(sortedArray,insertionArray))
+    //     }
 
-    }
+    // }
     const printArray =()=>{
         for(let i =0; i<array.length;i++){
             console.log(array[i]);
