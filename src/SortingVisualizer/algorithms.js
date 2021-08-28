@@ -161,7 +161,9 @@ export const heapSort = (array)=>{
     return animations;
 }
 
-
+function code(){
+    
+}
 
 //used for testing algorithms in the beginning
 export const areArraysEqual=(a, b)=>{
