@@ -86,8 +86,22 @@
   border: solid 3px black;
 }
 
+.sort-button:hover{
+  background-color: rgb(136, 136, 136, .75);
+  cursor: pointer;
+}
+
 .sort-button-text{
   padding: 10px 15px;
+}
+
+.sort-button-text:hover{
+  background-color: rgb(136, 136, 136, .75);
+  cursor: pointer;
+}
+
+.center{
+  display:inline-block;
 }
 
 

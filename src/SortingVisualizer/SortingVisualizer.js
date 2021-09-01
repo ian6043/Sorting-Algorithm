@@ -75,11 +75,6 @@ const SortingVisualizer=() =>{
                 setTimeout(()=>{        
                     itemOneStyle.height= `${heightOne}px`;
                    }, i *10);
-            } else if(detail ==='instant'){
-                setTimeout(()=>{        
-                    itemOneStyle.backgroundColor = color ;
-                    itemTwoStyle.backgroundColor = color;
-                   },0);
             }
         }
     }
@@ -109,6 +104,7 @@ const SortingVisualizer=() =>{
          <>
          <div className="array-buttons">
             <button className="button" onClick={createArray}>Create New Array</button>
+            <div className="center">Holder</div>
             <Slider text={'Array Size: '} min={10} max={200} onResize={changeNumOfItems}/>
          </div>
          <div className="array-container" >

@@ -157,11 +157,41 @@ function partition(tempArray, first, last, animations){
 export const heapSort = (array)=>{
     const animations = [];
     const tempArray = array.slice();
-
+    for (let i = Math.floor(array.length / 2) - 1; i >= 0; i--) {
+        heapify(tempArray, i, array.length, animations);
+    }
+    for (let i = 0; i <= array.length; i++) {
+        swap(array, 0 , array.length, animations); 
+        heapify(array, i, array.length, animations); 
+      }
     return animations;
 }
 
-function code(){
+function heapify(tempArray, index, length, animations){
+    let left = 2 * index; 
+    let right = 2 * index + 1; 
+    let minIndex;
+    if (right < length) { 
+        if (tempArray[left] >= tempArray[right]) { 
+          minIndex = right;
+        } else {
+          minIndex = left;
+        }
+      } else if (left < length) { 
+        minIndex = left;
+      } else {
+        return; 
+      }
+      if (tempArray[index] > tempArray[minIndex]) {
+        swap(tempArray, index, minIndex, animations); 
+        heapify(tempArray, minIndex, length, animations);
+      }
+}
+function swap(tempArray, indexOne, indexTwo, animations){
+    animations.push(['swap',indexOne,indexTwo,tempArray[indexOne],tempArray[indexTwo],'red']);
+    var temp = tempArray[indexOne];
+    tempArray[indexOne]= tempArray[indexTwo];
+    tempArray[indexTwo]= temp;
     
 }
 
