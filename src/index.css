@@ -14,7 +14,7 @@
   width: 90%;
   height: 73%;
   overflow: hidden;
-  background-color: rgb(180, 143, 143);
+  background-color: rgb(189, 189, 189);
   align-items: baseline;
   
 }
@@ -25,6 +25,7 @@
   width:3px;
   display: inline-block;
   background-color: steelblue;
+  border: 1px solid #000000;
 }
 
 .array-buttons{
@@ -60,7 +61,7 @@
 
 .button{
   margin: 2%;
-  background-color: aqua;
+  background-color: rgb(136, 136, 136, 1);
   padding: 10px;
   border-radius: 5px;
   border: solid 3px black;
@@ -84,11 +85,6 @@
   margin: 1% 0.5% ;
   border-radius: 5px;
   border: solid 3px black;
-}
-
-.sort-button:hover{
-  background-color: rgb(136, 136, 136, .75);
-  cursor: pointer;
 }
 
 .sort-button-text{

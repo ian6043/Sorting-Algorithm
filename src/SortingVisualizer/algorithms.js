@@ -158,41 +158,57 @@ export const heapSort = (array)=>{
     const animations = [];
     const tempArray = array.slice();
     for (let i = Math.floor(array.length / 2) - 1; i >= 0; i--) {
-        heapify(tempArray, i, array.length, animations);
+        heapify(tempArray, array.length, i , animations);
     }
-    for (let i = 0; i <= array.length; i++) {
-        swap(array, 0 , array.length, animations); 
-        heapify(array, i, array.length, animations); 
+    for (let j = array.length -1; j >=0 ; j--) {
+        swap(tempArray, 0, j, animations);
+        heapify(tempArray, j , 0, animations);
       }
     return animations;
 }
 
-function heapify(tempArray, index, length, animations){
+function heapify(tempArray, length, index, animations){
     let left = 2 * index; 
     let right = 2 * index + 1; 
-    let minIndex;
-    if (right < length) { 
-        if (tempArray[left] >= tempArray[right]) { 
-          minIndex = right;
-        } else {
-          minIndex = left;
-        }
-      } else if (left < length) { 
+    let minIndex =index;
+
+    if(left<length && right<length){
+        animations.push(['current',left,right,0,0,'red']);
+    } else if(left<length){
+        animations.push(['current',left,left,0,0,'red']);
+    } else if(right<length){
+        animations.push(['current',right,right,0,0,'red']);
+    }
+
+    if(left < length && tempArray[left] > tempArray[minIndex]){
         minIndex = left;
-      } else {
-        return; 
-      }
-      if (tempArray[index] > tempArray[minIndex]) {
-        swap(tempArray, index, minIndex, animations); 
-        heapify(tempArray, minIndex, length, animations);
-      }
+    }
+
+    if(right < length && tempArray[right] > tempArray[minIndex]){
+        minIndex = right;
+    }
+
+    if(left<length && right<length){
+        animations.push(['current',left,right,0,0,'steelblue']);
+    } else if(left<length){
+        animations.push(['current',left,left,0,0,'steelblue']);
+    } else if(right<length){
+        animations.push(['current',right,right,0,0,'steelblue']);
+    }
+
+    if(minIndex !== index){
+        swap(tempArray, index, minIndex, animations);
+        heapify(tempArray, length, minIndex, animations);
+    }
+
 }
 function swap(tempArray, indexOne, indexTwo, animations){
+    animations.push(['current',indexOne,indexTwo,0,0,'red']);
     animations.push(['swap',indexOne,indexTwo,tempArray[indexOne],tempArray[indexTwo],'red']);
     var temp = tempArray[indexOne];
     tempArray[indexOne]= tempArray[indexTwo];
     tempArray[indexTwo]= temp;
-    
+    animations.push(['current',indexOne,indexTwo,0,0,'steelblue']);
 }
 
 //used for testing algorithms in the beginning

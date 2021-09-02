@@ -9,7 +9,7 @@ const SortingVisualizer=() =>{
     const [array, setArray] = useState([])
     const [numOfItems,setNumOfItems] = useState(100)
     
-
+    // Building the Array
     const createArray = () =>{
         let array =[]
         for(let i =0; i< numOfItems; i++){
@@ -18,11 +18,11 @@ const SortingVisualizer=() =>{
         setArray(array)
         console.log("Create Array"+array.length+" "+numOfItems)
     }
-
+    //Generate random number for the heights of the array items
     const getRandomInt = (min, max) =>{
         return Math.floor(Math.random() * (max - min) + min) 
     }
-
+    // Updates the state of the number of items in the array
     const changeNumOfItems = (e)=>{
         let num = e.target.value
         setNumOfItems(num)
@@ -30,31 +30,38 @@ const SortingVisualizer=() =>{
         console.log("ChnageNum of Items"+array.length+" "+numOfItems)
 
     }
-    
+
+    //Calls Merge sort from algorithms.js
     function mergeSort(){
         const animations = algorithms.mergeSort(array);
         animate(animations);
     }
 
+    //Calls bubble sort from algorithms.js
     function bubbleSort() {
         const animations = algorithms.bubbleSort(array);
         animate(animations);
     }
 
+    //Calls insertion sort from algorithms.js
     const insertionSort =()=> {
         const animations = algorithms.insertionSort(array);
         animate(animations);
     }
 
+    //Calls quick sort from algorithms.js
     const quickSort =()=> {
         const animations = algorithms.quickSort(array);
         animate(animations);
     }
 
+    //Calls heap sort from algorithms.js
     const heapSort =()=> {
         const animations = algorithms.heapSort(array);
         animate(animations);
     }
+
+    //Animation function that handells the chaning of colors and swapping of items
     function animate(animations){
         for(let i= 0;i< animations.length;i++){
             const arrayItems =document.getElementsByClassName("array-item");
@@ -78,6 +85,10 @@ const SortingVisualizer=() =>{
             }
         }
     }
+
+    // Commented out functions used for testing the algorithms
+
+
     // const testAlgorithms =()=>{
     //     for(let i=0; i<100; i++){
     //         const testArray =[];
@@ -91,20 +102,24 @@ const SortingVisualizer=() =>{
     //     }
 
     // }
-    const printArray =()=>{
-        for(let i =0; i<array.length;i++){
-            console.log(array[i]);
-        }
-        console.log('---------------------');
-    }
+    // const printArray =()=>{
+    //     for(let i =0; i<array.length;i++){
+    //         console.log(array[i]);
+    //     }
+    //     console.log('---------------------');
+    // }
 
+    //creates inital array
     if (array.length===0) {createArray()}
 
+
+    // returns the html
      return(
          <>
          <div className="array-buttons">
+             {/* Create New array button calls create array function */}
             <button className="button" onClick={createArray}>Create New Array</button>
-            <div className="center">Holder</div>
+            {/* Slider component made in slider.js */}
             <Slider text={'Array Size: '} min={10} max={200} onResize={changeNumOfItems}/>
          </div>
          <div className="array-container" >
@@ -120,12 +135,13 @@ const SortingVisualizer=() =>{
             </div>
          </div>
          <div className="sort-buttons">
+             {/* Button componets made in a Button.js */}
             <Button text={'Merge Sort'} onClick={mergeSort}/>
             <Button text={'Bubble Sort'} onClick={bubbleSort}/>
             <Button text={'Insertion Sort'} onClick={insertionSort}/>
             <Button text={'Quick Sort'} onClick={quickSort}/>
             <Button text={'Heap Sort'} onClick={heapSort}/>
-            <Button text={'Print'} onClick={printArray}/>
+            {/* <Button text={'Print'} onClick={printArray}/> */}
          </div>
 
 
