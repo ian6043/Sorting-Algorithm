@@ -13,22 +13,23 @@ const SortingVisualizer=() =>{
     const createArray = () =>{
         let array =[]
         for(let i =0; i< numOfItems; i++){
-            array.push(getRandomInt(10,700));
+            array.push(getRandomInt(10,600));
         }
         setArray(array)
         console.log("Create Array"+array.length+" "+numOfItems)
     }
+
     //Generate random number for the heights of the array items
     const getRandomInt = (min, max) =>{
         return Math.floor(Math.random() * (max - min) + min) 
     }
+    
     // Updates the state of the number of items in the array
     const changeNumOfItems = (e)=>{
         let num = e.target.value
         setNumOfItems(num)
         createArray()
         console.log("ChnageNum of Items"+array.length+" "+numOfItems)
-
     }
 
     //Calls Merge sort from algorithms.js
@@ -118,7 +119,7 @@ const SortingVisualizer=() =>{
          <>
          <div className="array-buttons">
              {/* Create New array button calls create array function */}
-            <button className="button" onClick={createArray}>Create New Array</button>
+            <div className="button-container"><button className="button" onClick={createArray}>Create New Array</button></div>
             {/* Slider component made in slider.js */}
             <Slider text={'Array Size: '} min={10} max={200} onResize={changeNumOfItems}/>
          </div>
@@ -136,9 +137,9 @@ const SortingVisualizer=() =>{
          </div>
          <div className="sort-buttons">
              {/* Button componets made in a Button.js */}
-            <Button text={'Merge Sort'} onClick={mergeSort}/>
-            <Button text={'Bubble Sort'} onClick={bubbleSort}/>
             <Button text={'Insertion Sort'} onClick={insertionSort}/>
+            <Button text={'Bubble Sort'} onClick={bubbleSort}/>
+            <Button text={'Merge Sort'} onClick={mergeSort}/>
             <Button text={'Quick Sort'} onClick={quickSort}/>
             <Button text={'Heap Sort'} onClick={heapSort}/>
             {/* <Button text={'Print'} onClick={printArray}/> */}

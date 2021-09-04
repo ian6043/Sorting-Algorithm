@@ -70,7 +70,6 @@ export const insertionSort = (array)=>{
         animations.push(['swap',i,j+1,current,tempArray[j+1],'red']);
         tempArray[j+1]=current;
     }
-    animations.push();
     animations.push(['current',length-1,length-1,0,0,'steelblue']);
     return animations;
 }
