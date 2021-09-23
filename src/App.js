@@ -1,5 +1,6 @@
 import SortingVisualizer from "./SortingVisualizer/SortingVisualizer";
 import Header from "./SortingVisualizer/components/Header";
+import Footer from "./SortingVisualizer/components/Footer";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
     <div className="container">
     <SortingVisualizer/>
     </div>
+    <Footer/>
     </>
   );
 }

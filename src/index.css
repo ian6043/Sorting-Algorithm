@@ -4,6 +4,7 @@
   --background-color-arrayContainer:  rgb(255, 168, 168);
   --background-color-bar:  rgb(150, 120, 221, .75);
   --background-color-header:rgba(149, 143, 163, 0.75) ;
+  --background-color-footer:rgba(149, 143, 163, 0.75) ;
 }
 
 body{
@@ -18,22 +19,23 @@ body{
   background-color: var(--background-color-header);
   margin: 0% 0px 2.5% 0px;
   padding: 0%;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
+  grid-template-columns: 1fr 3fr 1fr ;
 }
 
-.logo{
-  padding: 5% 5%;
-  
-}
+
 .title{
   font-weight: bold;
   font-size: 45px;
-  padding: 5% 5%;
+  padding: 0;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  text-align: center;
 }
 .myname{
-  padding: 5% 5%;
+  padding: 5% 7%;
 
 }
 .container {
@@ -56,7 +58,6 @@ body{
   overflow: hidden;
   background-color: var(--background-color-arrayContainer);
   align-items: baseline;
-  
 }
 
 
@@ -162,4 +163,30 @@ body{
   display:inline-block;
 }
 
+.footer{
+  display: flex;
+  flex-direction: column;
+  background-color: var( --background-color-footer);
+  width: 100%;
+  height: 20vh;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin: 2.5% 0% 0% 0% ;
+}
+
+.contact-header{
+  padding: 7px 0;
+  margin: 0%;
+  font-size: larger;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.social-link{
+  padding: 7px 0;
+  margin: 0%;
+  font-size: larger;
+  font-weight: bold;
+}
 
