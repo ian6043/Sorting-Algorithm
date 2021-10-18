@@ -52,6 +52,7 @@ function Merge(array,first,middle,last,tempArray,animations){
 export const insertionSort = (array)=>{
     const animations = [];
     const tempArray = array.slice();
+    let num = 0;
     let length = array.length;
     for(let i = 1; i<length;i++){
         let current = tempArray[i];
@@ -69,7 +70,9 @@ export const insertionSort = (array)=>{
         animations.push(['current',j+1,j+1,0,0,'steelblue']);
         animations.push(['swap',i,j+1,current,tempArray[j+1],'red']);
         tempArray[j+1]=current;
+        num = j+1;
     }
+    animations.pop();
     animations.push(['current',length-1,length-1,0,0,'steelblue']);
     return animations;
 }
