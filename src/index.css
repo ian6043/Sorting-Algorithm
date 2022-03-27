@@ -1,10 +1,10 @@
 :root {
   --button-color: rgb(199, 199, 199);
   --button-color-hover: rgba(184, 184, 184, .70);
-  --background-color-arrayContainer:  rgb(255, 168, 168);
-  --background-color-bar:  rgb(150, 120, 221, .75);
-  --background-color-header:rgba(149, 143, 163, 0.75) ;
-  --background-color-footer:rgba(149, 143, 163, 0.75) ;
+  --background-color-arrayContainer:  rgb(240, 253, 255);
+  --background-color-bar:  rgba(123, 158, 255, 0.75);
+  --background-color-header:rgba(178, 172, 194, 0.75) ;
+  --background-color-footer:rgba(178, 172, 194, 0.75) ;
 }
 
 body{
